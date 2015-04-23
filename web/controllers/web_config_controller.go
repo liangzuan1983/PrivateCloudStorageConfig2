@@ -28,6 +28,9 @@ func (this *WebConfigController) Post() {
 		password := this.Input().Get("password")
 		beego.Info(name)
 		beego.Info(password)
+		mystruct := "{ 'x':'1' }"
+		this.Data["json"] = &mystruct
+		this.ServeJson()
 
 	default:
 		

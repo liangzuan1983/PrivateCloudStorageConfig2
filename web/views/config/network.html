@@ -1,0 +1,116 @@
+﻿<div ng-controller="NetworkConfigController">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+						aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#/config">配置个人云存储</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">用户</a></li>
+					<li><a href="#">帮助</a></li>
+
+				</ul>
+
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li class="active"><a href="#"><b>配置项目</b> <span class="sr-only">(current)</span></a></li>
+					<li><a href="#/config/network" id="openNetwork">配置网络</a></li>
+					<li><a href="#/config/disk">查看硬盘信息</a></li>
+					<li><a href="#/config/reboot">重启</a></li>
+				</ul>
+			</div>
+
+		</div>
+
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+
+			<div class="table-responsive">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						配置有线网络
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							<!-- <form role="form" class="" METHOD="post" id="formConfigWire"> -->
+							<div>
+								<div class="form-group">
+									<label for="ip">ip</label>
+									<input type="text" class="form-control" id="ip" name="ip" placeholder="ip" required autofocus>
+								</div>
+								<div class="form-group">
+									<label for="mask">mask</label>
+									<input type="text" class="form-control" id="mask" name="mask" placeholder="mask" required>
+								</div>
+
+								<button type="submit" class="btn btn-primary  " id="btnWireConfig">
+									<i class="ace-icon fa fa-key bigger-110"></i>提交
+								</button>
+								<!--<button type="submit" class="btn btn-default">提交</button>-->
+							</div>
+							<!-- </form> -->
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+
+
+			<div class="table-responsive">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						配置无线网络
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<div class="table-responsive">
+
+							<form role="form" class="">
+								<div class="form-group">
+									<label for="ssid">ssid</label>
+									<input type="text" class="form-control" id="ssid" placeholder="ssid" required autofocus>
+								</div>
+								<div class="form-group">
+									<label for="username">username</label>
+									<input type="text" class="form-control" id="username" placeholder="username" required>
+								</div>
+								<div class="form-group">
+									<label for="password">password</label>
+									<input type="password" class="form-control" id="password" placeholder="password" required>
+								</div>
+
+								<button type="submit" class="btn btn-primary  ">
+									<i class="ace-icon fa fa-key bigger-110"></i>提交
+								</button>
+								<!--<button type="submit" class="btn btn-default">提交</button>-->
+							</form>
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+
+		</div>
+
+	</div>
+</div>

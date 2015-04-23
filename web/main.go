@@ -9,7 +9,7 @@ import (
 func main() {
 	beego.Router("/", &controllers.MainController{})
 	beego.Router("api/v1/webconfig", &controllers.WebConfigController{})
-	//beego.SetStaticPath("/static", "/mh/mygo/src/github.com/oikomi/PrivateCloudStorageConfig2/web/static")
+	beego.SetStaticPath("/views", "/mh/mygo/src/github.com/oikomi/PrivateCloudStorageConfig2/web/views")
 	beego.Run()
 }
 
