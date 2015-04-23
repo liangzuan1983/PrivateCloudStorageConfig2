@@ -1,0 +1,1 @@
+var privateCloudStorageWebConfigApp = angular.module("PrivateCloudStorageWebConfig", []);
