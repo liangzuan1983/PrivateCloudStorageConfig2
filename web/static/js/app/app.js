@@ -21,6 +21,14 @@ privateCloudStorageWebConfigApp.config(['$routeProvider', function($routeProvide
 			templateUrl: 'views/config/network.html', 
 			controller: 'NetworkConfigController' 
 		}) 
+		.when('/config/reboot', { 
+			templateUrl: 'views/config/reboot.html', 
+			controller: 'RebootConfigController' 
+		}) 
+		.when('/config/disk', { 
+			templateUrl: 'views/config/disk.html', 
+			controller: 'DiskConfigController' 
+		}) 
 		.otherwise({ 
 			redirectTo: '/' 
 		}); 

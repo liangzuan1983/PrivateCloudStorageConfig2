@@ -30,3 +30,7 @@ configControllerModule.controller('ConfigController', function($scope, getServer
 configControllerModule.controller('NetworkConfigController', function($scope) { 
 	
 });
+
+configControllerModule.controller('RebootConfigController', function($scope) { 
+	
+});
