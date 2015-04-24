@@ -10,7 +10,26 @@ type WebConfigController struct {
 }
 
 func (this *WebConfigController) Get() {
+	beego.Info("WebConfigController Get")
+	action := this.GetString(conf.KEY_ACTION)
+	if action == "" {
+		beego.Error("[para is null] | action ")
+		this.Abort("400")
+		return
+	}
 	
+	ifo := NewInfoOperation()
+	switch action {
+	case conf.ACTION_GET_TOTAL_STATUS:
+		ts, err := ifo.getTotalStatus()
+		if err != nil {
+			beego.Error(err)
+			this.Abort("400")
+			return
+		}
+		this.Data["json"] = ts
+		this.ServeJson()
+	}
 }
 
 func (this *WebConfigController) Post() {
@@ -22,17 +41,42 @@ func (this *WebConfigController) Post() {
 		return
 	}
 	
-	switch action {
-	case conf.ACTION_LOGIN:
-		name := this.Input().Get("username")
-		password := this.Input().Get("password")
-		beego.Info(name)
-		beego.Info(password)
-		mystruct := "{ 'x':'1' }"
-		this.Data["json"] = &mystruct
-		this.ServeJson()
+}
 
-	default:
-		
+type InfoOperation struct {
+
+}
+
+func NewInfoOperation() *InfoOperation {
+	return &InfoOperation {
 	}
+}
+
+func (this *InfoOperation)getTotalStatus()  (*TotalStatus, error) {
+    ts := NewTotalStatus()
+    ip, err := GetLocalIP(conf.IFI)
+    if err != nil {
+        beego.Error("getTotalStatus Failed")
+        return nil, err
+    }
+    beego.Info(ip)
+    ts.Ip = ip
+
+    mac, err := GetLocalMac(conf.IFI)
+    if err != nil {
+        beego.Error("getTotalStatus Failed")
+        return nil, err
+    }
+    beego.Info(mac)
+    ts.Mac = mac
+    dud, err := GetDiskUsage()
+    if err != nil {
+        beego.Error("getTotalStatus Failed")
+        return nil, err
+    }
+
+    ts.AllStorage = dud.All
+    ts.UsedStorage = dud.Used
+
+    return &ts, nil
 }

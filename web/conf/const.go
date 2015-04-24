@@ -16,6 +16,11 @@
 package conf
 
 const (
+    IFI = "enp2s1"
+    BaseDir = "/home/data"
+)
+
+const (
 	KEY_ACTION = "action"
 	KEY_PATH = "path"
 	KEY_TOKEN = "token"
@@ -27,13 +32,6 @@ const (
 )
 
 const (
-	ACTION_LOGIN = "login"
-	ACTION_GET_SERVER_FILE_LIST = "get_server_file_list"
-	ACTION_MKDIR = "mkdir"
-	ACTION_RMFILE = "rm_file"
-	ACTION_RENAME = "rename"
-	ACTION_MOVEFILE = "move_file"
-	ACTION_UPLOAD = "upload"
-	ACTION_GET_STORAGE_INFO = "get_storage_info"
-	ACTION_IS_FILE_EXIST = "is_file_exist"
+	ACTION_GET_TOTAL_STATUS = "get_total_status"
+
 )
