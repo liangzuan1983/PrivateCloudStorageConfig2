@@ -7,7 +7,8 @@ privateCloudStorageWebConfigApp.run(function($rootScope) {
 }); 
 
 
-privateCloudStorageWebConfigApp.config(['$routeProvider', function($routeProvider) { 
+privateCloudStorageWebConfigApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) { 
+	//$locationProvider.html5Mode(true);
 	$routeProvider 
 		.when('/', { 
 			templateUrl: 'views/login.html', 

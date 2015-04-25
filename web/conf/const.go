@@ -34,4 +34,6 @@ const (
 const (
 	ACTION_GET_TOTAL_STATUS = "get_total_status"
 	ACTION_REBOOT = "reboot"
+	
+	ACTION_LOGIN = "login"
 )

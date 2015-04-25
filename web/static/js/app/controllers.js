@@ -1,9 +1,26 @@
 ﻿var loginControllerModule = angular.module("LoginControllerModule", ['ServiceModule']);
 
-loginControllerModule.controller('LoginController', function($scope, loginService) { 
+loginControllerModule.controller('LoginController', function($scope, $location, loginService) { 
 	//$scope.showLogin = true; 
-	$scope.login = function(username, password) {
-		loginService.events(username, password);
+	var reqParams = {
+		action : "login"
+	};
+	
+	$scope.login = function(user) {
+		var postData = {
+			username : user.name,
+			password : user.password
+		};
+		loginService.events(reqParams, postData).success(function(data, status, headers, config) {
+			console.log(data);
+			if (data.status == "0") {
+				$location.path("/config");
+			} else {
+				alert("登录失败！");
+			}
+		}).error(function(data, status, headers, config) {
+			alert("登录失败！");
+		});
 	}; 
 });
 
@@ -14,7 +31,7 @@ configControllerModule.controller('ConfigController', function($scope, getServer
 	var reqParams = {
 		action : "get_total_status"
 	};
-
+	//$scope.mac_addr = "";
 	getServerDataService.events(reqParams).success(function(data, status, headers, config) {
 		console.log(data);
 		$scope.mac_addr = data.ip;
@@ -37,7 +54,7 @@ configControllerModule.controller('RebootConfigController', function($scope, reb
 	$scope.reboot = function() {
 		alert("reboot");
 		rebootService.events(reqParams).success(function(data, status, headers, config) {
-			console.log(data);
+			console.log("重启成功");
 		}).error(function(data, status, headers, config) {
 			alert("获取服务器数据失败！");
 		});

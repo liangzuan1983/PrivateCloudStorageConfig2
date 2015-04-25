@@ -2,16 +2,13 @@
 
 serviceModule.factory('loginService', function($http) {
 	var url = 'api/v1/webconfig'; 
-	var postData = {
-		username : "admin",
-		password : "admin"
-	};
-	var runLoginRequest = function(username, password) { 
-		return $http.post(url, postData, {params: {action:"login"}, timeout:5000});
+
+	var runLoginRequest = function(reqParams, postData) { 
+		return $http.post(url, postData, {params: reqParams, timeout:5000});
 	}; 
 	return { 
-		events: function(username, password) { 
-				return runLoginRequest(username, password);
+		events: function(reqParams, postData) { 
+				return runLoginRequest(reqParams, postData);
 			} 
 	}; 
 });

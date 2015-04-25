@@ -18,6 +18,20 @@ package controllers
 import (
 )
 
+
+type LoginPostData struct {
+	Username               string `json:"username"`
+	Password               string `json:"password"`
+}
+
+type LoginStatus struct {
+	Status               string `json:"status"`
+}
+
+func NewLoginStatus() LoginStatus {
+	return LoginStatus{}
+}
+
 type RebootStatus struct {
 	Status               string `json:"status"`
 }
