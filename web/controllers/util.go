@@ -1,14 +1,33 @@
 package controllers
 
 import (
-    "net"
-    "fmt"
-    "errors"
-    "syscall"
-    "strings"
+	"net"
+	"fmt"
+	"bytes"
+	"errors"
+	"syscall"
+	"strings"
+	"os/exec"
 	"github.com/astaxie/beego"
 	"github.com/oikomi/PrivateCloudStorageConfig2/web/conf"
 )
+
+
+func RunShellCmd(s string) error {
+	cmd := exec.Command("/bin/sh", "-c", s)
+	var out bytes.Buffer
+
+	cmd.Stdout = &out
+	err := cmd.Run()
+	if err != nil {
+		beego.Error(err)
+		return err
+	}
+	fmt.Printf("%s", out.String())
+	
+	return nil
+}
+
 
 func GetLocalIP(inter string) (string,error){
     ifi, err := net.InterfaceByName(inter)

@@ -18,6 +18,14 @@ package controllers
 import (
 )
 
+type RebootStatus struct {
+	Status               string `json:"status"`
+}
+
+func NewRebootStatus() RebootStatus {
+	return RebootStatus{}
+}
+
 type TotalStatus struct {
 	Ip               string `json:"ip"`
 	Mac              string `json:"mac"`

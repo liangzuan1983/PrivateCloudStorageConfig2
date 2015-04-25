@@ -1,4 +1,4 @@
-var loginControllerModule = angular.module("LoginControllerModule", ['ServiceModule']);
+锘縱ar loginControllerModule = angular.module("LoginControllerModule", ['ServiceModule']);
 
 loginControllerModule.controller('LoginController', function($scope, loginService) { 
 	//$scope.showLogin = true; 
@@ -22,7 +22,7 @@ configControllerModule.controller('ConfigController', function($scope, getServer
 		$scope.used_storage = data.usedStorage;
 		$scope.all_storage = data.allStorage;
 	}).error(function(data, status, headers, config) {
-		alert("获取服务器数据失败！");
+		alert("鑾峰彇鏈嶅姟鍣ㄦ暟鎹け璐ワ紒");
 	});
 });
 
@@ -30,19 +30,16 @@ configControllerModule.controller('NetworkConfigController', function($scope) {
 	
 });
 
-configControllerModule.controller('RebootConfigController', function($scope) { 
+configControllerModule.controller('RebootConfigController', function($scope, rebootService) { 
 	var reqParams = {
 		action : "reboot"
 	};
 	$scope.reboot = function() {
-		rebootService.events().success(function(data, status, headers, config) {
+		alert("reboot");
+		rebootService.events(reqParams).success(function(data, status, headers, config) {
 			console.log(data);
-			$scope.mac_addr = data.ip;
-			$scope.ip_addr = data.mac;
-			$scope.used_storage = data.usedStorage;
-			$scope.all_storage = data.allStorage;
 		}).error(function(data, status, headers, config) {
-			alert("获取服务器数据失败！");
+			alert("鑾峰彇鏈嶅姟鍣ㄦ暟鎹け璐ワ紒");
 		});
 	}; 
 });

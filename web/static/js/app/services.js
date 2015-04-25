@@ -1,4 +1,4 @@
-var serviceModule = angular.module("ServiceModule", []);
+﻿var serviceModule = angular.module("ServiceModule", []);
 
 serviceModule.factory('loginService', function($http) {
 	var url = 'api/v1/webconfig'; 
