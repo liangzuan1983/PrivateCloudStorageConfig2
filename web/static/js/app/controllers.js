@@ -1,6 +1,6 @@
-﻿var loginControllerModule = angular.module("LoginControllerModule", ['ServiceModule']);
+﻿var loginControllerModule = angular.module("LoginControllerModule", ['ngCookies', 'ServiceModule']);
 
-loginControllerModule.controller('LoginController', function($scope, $location, loginService) { 
+loginControllerModule.controller('LoginController', function($scope, $location, $cookies, loginService) { 
 	//$scope.showLogin = true; 
 	var reqParams = {
 		action : "login"
@@ -14,6 +14,7 @@ loginControllerModule.controller('LoginController', function($scope, $location, 
 		loginService.events(reqParams, postData).success(function(data, status, headers, config) {
 			console.log(data);
 			if (data.status == "0") {
+				$cookies.isLogin = true;
 				$location.path("/config");
 			} else {
 				alert("登录失败！");
@@ -25,9 +26,15 @@ loginControllerModule.controller('LoginController', function($scope, $location, 
 });
 
 
-var configControllerModule = angular.module("ConfigControllerModule", ['ServiceModule']);
+var configControllerModule = angular.module("ConfigControllerModule", ['ngCookies', 'ServiceModule']);
 
-configControllerModule.controller('ConfigController', function($scope, getServerDataService) { 
+configControllerModule.controller('ConfigController', function($scope, $location, $cookies, getServerDataService) { 
+	var isLogin = $cookies.isLogin;
+	
+	if (!isLogin) {
+		$location.path("/");
+	}
+
 	var reqParams = {
 		action : "get_total_status"
 	};
@@ -43,11 +50,20 @@ configControllerModule.controller('ConfigController', function($scope, getServer
 	});
 });
 
-configControllerModule.controller('NetworkConfigController', function($scope) { 
+configControllerModule.controller('NetworkConfigController', function($scope, $location, $cookies) { 
+	var isLogin = $cookies.isLogin;
 	
+	if (!isLogin) {
+		$location.path("/");
+	}
 });
 
-configControllerModule.controller('RebootConfigController', function($scope, rebootService) { 
+configControllerModule.controller('RebootConfigController', function($scope, $location, $cookies, rebootService) { 
+	var isLogin = $cookies.isLogin;
+	
+	if (!isLogin) {
+		$location.path("/");
+	}
 	var reqParams = {
 		action : "reboot"
 	};
